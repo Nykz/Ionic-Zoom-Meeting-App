@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Zoom App
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="createMeeting()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    @for(meet of meetings; track $index) {
+      <ion-item class="ion-margin-vertical" lines="full">
+        <ion-label>
+          {{ meet?.topic }}
+          <p class="meet_id">
+            ID - {{ meet?.id }}
+          </p>
+          <p>
+            Start time: {{ meet?.start_time | date: 'MMM d, y - hh:mm a' }}
+          </p>
+        </ion-label>
+
+        <ion-button slot="end" fill="outline" (click)="joinMeeting(meet)">JOIN</ion-button>
+      </ion-item>
+    } @empty {
+      <div class="empty" [align]="'center'">
+        <ion-text>No meetings created yet</ion-text>
+      </div>
+    }
+
+  </ion-list>
+  
+</ion-content>
